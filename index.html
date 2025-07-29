@@ -1,71 +1,28 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const pageIds = ['Home', 'ffff' , 'Works', 'About', 'CV']; // Don't include 'Contact'
-
-    function showPage(pageId) {
-      // Hide all target sections
-      pageIds.forEach(id => {
-        const section = document.getElementById(id);
-        if (section) section.classList.add('hidden-section');
-      });
-
-      // Show the selected one
-      const selected = document.getElementById(pageId);
-      if (selected) selected.classList.remove('hidden-section');
-
-      // Update hash
-      window.location.hash = pageId;
-    }
-
-    const currentPage = window.location.hash.replace('#', '') || 'Home';
-    showPage(currentPage);
-
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', event => {
-        event.preventDefault();
-        const id = link.getAttribute('href').replace('#', '');
-        showPage(id);
-      });
-    });
-  });
-</script>
-
-
-
-<style>
-  .hidden-section {
-    display: none;
-  }
-</style>
-
-
-<style>
-  .space-5 {
-    margin-left: 5ch;
-  }
-</style>
-
-
 <html lang="en">
 <head>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nasim Makaremi Nia - Visual Artist</title>
+
+  <!-- SEO Meta Description -->
+  <meta name="description" content="Nasim Makaremi Nia is a visual artist based in Newfoundland and Labrador, working across painting, embroidery, and mixed media. Explore her portfolio, CV, and exhibitions." />
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- Fonts & Global Styles -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Archivo:wght@300;400;500;600&display=swap');
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Archivo', sans-serif;
     }
@@ -77,7 +34,44 @@
       background: #ddd;
       border-radius: 0.5rem;
     }
+    .space-5 {
+      margin-left: 5ch;
+    }
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
+    }
   </style>
+
+  <!-- Page Switching Logic -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const pageIds = ['Home', 'Works', 'About', 'CV'];
+
+      function showPage(pageId) {
+        pageIds.forEach(id => {
+          const section = document.getElementById(id);
+          if (section) section.classList.remove('active');
+        });
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active');
+        window.location.hash = pageId;
+      }
+
+      const currentPage = window.location.hash.replace('#', '') || 'Home';
+      showPage(currentPage);
+
+      document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const id = link.getAttribute('href').replace('#', '');
+          showPage(id);
+        });
+      });
+    });
+  </script>
 </head>
 <body class="bg-orange-50 text-black">
   <header class="py-4 px-6 text-right border-b border-stone-300">
@@ -90,18 +84,11 @@
     </nav>
   </header>
 
-
-
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-/>
-
   
-  <section id="Home" class=" flex-col justify-center items-center text-center px-6 page-section">
+  
+  <section id="Home" class=" flex-col justify-center items-center text-center px-6 page-section active">
   <h1 class="text-4xl md:text-6xl font-light">Nasim Makaremi Nia</h1>
   <p class="text-lg text-stone-700 mt-4">Visual Artist</p>
-
 
   <h2 class="text-3xl font-light text-center mb-12"></h2>
 
@@ -110,75 +97,10 @@
     <!-- Swiper -->
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
-
+        <!-- Slide 1 -->
         <div class="swiper-slide">
           <div class="aspect-w-3 aspect-h-4">
-            <img
-              src="IMG_2473-1.jpg"
-              alt="Cryptic Dimentions"
-              class="object-cover rounded-lg"
-            />
-          </div>
-          <p class="text-sm mt-1 text-center">
-            Cryptic Dimentions<br />
-            Craft Council of Newfoundland and Labrador<br />
-            Year: 2024
-          </p>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="aspect-w-3 aspect-h-4">
-            <img
-              src="mpluseWeb-_DSC3709.jpg"
-              alt="Between Here and There"
-              class="object-cover rounded-lg"
-            />
-          </div>
-          <p class="text-sm mt-1 text-center">
-            Between Here and There<br />
-            Eastern Edge Gallery<br />
-            Year: 2022
-          </p>
-        </div>
-
- 
-        <div class="swiper-slide">
-          <div class="aspect-w-3 aspect-h-4">
-            <img
-              src="mpluseWeb-_DSC3707.jpg"
-              alt="Between Here and There"
-              class="object-cover rounded-lg"
-            />
-          </div>
-          <p class="text-sm mt-1 text-center">
-            Between Here and There<br />
-            Eastern Edge Gallery<br />
-            Year: 2022
-          </p>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="aspect-w-3 aspect-h-4">
-            <img
-              src="OBCL2129 (2).jpg"
-              alt="Shapes and Shadows, an Intersection of Identities"
-              class="object-cover rounded-lg"
-            />
-          </div>
-          <p class="text-sm mt-1 text-center">
-            Shapes and Shadows, an Intersection of Identities<br />
-            Grenfell Art Gallery<br />
-            Year: 2024
-          </p>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="aspect-w-3 aspect-h-4">
-            <img
-              src="Untitled_Instalation View_1.jpg"
-              alt="Cryptic Dimensions"
-              class="object-cover rounded-lg"
-            />
+            <img src="IMG_2473-1.jpg" alt="Cryptic Dimensions" class="object-cover rounded-lg" />
           </div>
           <p class="text-sm mt-1 text-center">
             Cryptic Dimensions<br />
@@ -187,17 +109,58 @@
           </p>
         </div>
 
-
-
-
-
+        <!-- Slide 2 -->
         <div class="swiper-slide">
           <div class="aspect-w-3 aspect-h-4">
-            <img
-              src="IMG_1494.jpg"
-              alt="Refracted Secrets"
-              class="object-cover rounded-lg"
-            />
+            <img src="mpluseWeb-_DSC3709.jpg" alt="Between Here and There" class="object-cover rounded-lg" />
+          </div>
+          <p class="text-sm mt-1 text-center">
+            Between Here and There<br />
+            Eastern Edge Gallery<br />
+            Year: 2022
+          </p>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <div class="aspect-w-3 aspect-h-4">
+            <img src="mpluseWeb-_DSC3707.jpg" alt="Between Here and There" class="object-cover rounded-lg" />
+          </div>
+          <p class="text-sm mt-1 text-center">
+            Between Here and There<br />
+            Eastern Edge Gallery<br />
+            Year: 2022
+          </p>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <div class="aspect-w-3 aspect-h-4">
+            <img src="OBCL2129 (2).jpg" alt="Shapes and Shadows, an Intersection of Identities" class="object-cover rounded-lg" />
+          </div>
+          <p class="text-sm mt-1 text-center">
+            Shapes and Shadows, an Intersection of Identities<br />
+            Grenfell Art Gallery<br />
+            Year: 2024
+          </p>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="swiper-slide">
+          <div class="aspect-w-3 aspect-h-4">
+            <img src="Untitled_Instalation View_1.jpg" alt="Cryptic Dimensions" class="object-cover rounded-lg" />
+          </div>
+          <p class="text-sm mt-1 text-center">
+            Cryptic Dimensions<br />
+            Craft Council of Newfoundland and Labrador<br />
+            Year: 2024
+          </p>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="swiper-slide">
+          <div class="aspect-w-3 aspect-h-4">
+            <img src="IMG_1494.jpg" alt="Refracted Secrets" class="object-cover rounded-lg" />
           </div>
           <p class="text-sm mt-1 text-center">
             Refracted Secrets<br />
@@ -207,42 +170,20 @@
         </div>
       </div>
 
-      <!-- Navigation buttons -->
+      <!-- Swiper navigation buttons -->
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
     </div>
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
-<script>
-  const swiper = new Swiper('.mySwiper', {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    autoplay: {
-      delay: 5000, // 5 seconds delay
-      disableOnInteraction: false,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
-</script>
-
-  </section>
 
 
 
 
 
 
-
-
-
- <section id="Works" class="py-16 px-6">
+ <section id="Works" class="py-16 px-6   page-section">
     <h2 class="text-3xl font-light text-center mb-12">  Works </h2>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
 
@@ -424,7 +365,7 @@
 
 
 
-<section id="About" class="py-16 px-4 bg-orange-100">
+<section id="About" class="py-16 px-4 bg-orange-100  page-section">
   <div class="max-w-6xl mx-auto">
     <div class="grid lg:grid-cols-5 gap-12 items-start">
       <div class="lg:col-span-3">
@@ -516,8 +457,7 @@
     margin-bottom: 1.25rem;
   }
 </style>
-
-<section id="CV">
+<section id="CV" class="page-section">
   <h2>CV</h2>
 
 <!-- EDUCATION -->
@@ -759,43 +699,49 @@
 
 
 
-
-<section id="Contact" class="py-16 px-6 bg-orange-50 contact-section">
-  <h2 class="text-3xl font-light mb-8 text-center">Contact</h2>
-  <div class="flex justify-center space-x-10 text-lg text-stone-800">
-    
-    <!-- Email -->
-    <a href="mailto:makaremi.nasim@gmail.com" class="flex items-center space-x-2 hover:opacity-80 transition">
-      <i class="fa-solid fa-envelope text-red-500 text-2xl"></i>
-      <span>Gmail</span>
-    </a>
-
-    <!-- Instagram -->
-    <a href="https://instagram.com/nasim.m_art" target="_blank" class="flex items-center space-x-2 hover:opacity-80 transition">
-      <i class="fab fa-instagram text-pink-500 text-2xl"></i>
-      <span>nasim.m_art</span>
-    </a>
-
-    <!-- LinkedIn -->
-    <a href="https://linkedin.com/in/nasim-makaremi-nia-12662b1b6" target="_blank" class="flex items-center space-x-2 hover:opacity-80 transition">
-      <i class="fab fa-linkedin text-blue-600 text-2xl"></i>
-      <span>LinkedIn</span>
-    </a>
-
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/nasim.makaremi.9" target="_blank" class="flex items-center space-x-2 hover:opacity-80 transition">
-      <i class="fab fa-facebook text-blue-800 text-2xl"></i>
-      <span>Facebook</span>
-    </a>
-
-  </div>
-</section>
-
-
-
+  <!-- Always-Visible Contact Section -->
+  <section id="Contact" class="py-16 px-6 bg-orange-50 contact-section">
+    <h2 class="text-3xl font-light mb-8 text-center">Contact</h2>
+    <div class="flex justify-center space-x-10 text-lg text-stone-800">
+      <a href="mailto:makaremi.nasim@gmail.com" class="flex items-center space-x-2 hover:opacity-80 transition">
+        <i class="fa-solid fa-envelope text-red-500 text-2xl"></i>
+        <span>Gmail</span>
+      </a>
+      <a href="https://instagram.com/nasim.m_art" target="_blank" class="flex items-center space-x-2 hover:opacity-80 transition">
+        <i class="fab fa-instagram text-pink-500 text-2xl"></i>
+        <span>nasim.m_art</span>
+      </a>
+      <a href="https://linkedin.com/in/nasim-makaremi-nia-12662b1b6" target="_blank" class="flex items-center space-x-2 hover:opacity-80 transition">
+        <i class="fab fa-linkedin text-blue-600 text-2xl"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://www.facebook.com/nasim.makaremi.9" target="_blank" class="flex items-center space-x-2 hover:opacity-80 transition">
+        <i class="fab fa-facebook text-blue-800 text-2xl"></i>
+        <span>Facebook</span>
+      </a>
+    </div>
+  </section>
 
   <footer class="text-center text-sm py-6 text-stone-600 border-t border-stone-300">
     &copy; 2024 Nasim Makaremi Nia
   </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.mySwiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
 </body>
 </html>
